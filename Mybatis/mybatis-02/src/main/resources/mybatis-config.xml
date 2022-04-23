@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<!--    properties?,settings?,typeAliases?,typeHandlers?,objectFactory?,objectWrapperFactory?,reflectorFactory?,-->
+<!--    plugins?,environments?,databaseldProvider? -->
+
+    <!--  引入外部配置文件  -->
+    <properties resource="db.properties">
+        <property name="username" value="wrong"/>
+        <property name="password" value="wrongpwd"/>    <!-- 外部配置的优先级高于内部 -->
+    </properties>
+
+    <settings>
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>
+
+    <!--  类型别名  -->
+    <typeAliases>
+        <!--  可以给具体的类进行别名设置 (原来仍可用) -->
+        <!-- com.lee.pojo.User ==> User  （实体类少时）-->
+<!--        <typeAlias type="com.lee.pojo.User" alias="UUUser"/>-->
+
+        <!--  也可以对具体的包进行设置，通过类的名称首字母小写来表示（不可修改类名，要修改则需要使用注解 @Alias, 如： @Alias("USER") ）-->
+        <!--  com.lee.dao.UserMapper ==> userMapper （实体类较多时） -->
+<!--        <package name="com.lee.dao"/>-->
+
+    </typeAliases>
+
+    <environments default="test">
+
+        <environment id="test">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+
+        <environment id="development">
+            <transactionManager type="JDBC"/>   <!--事务管理器 有两种 type="MANAGED"-->
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/mybatis?useSSL=true&amp;useUnicode=true&amp;serverTimezone=Asia/Shanghai&amp;characterEncoding=utf8"/>
+                <property name="username" value="root"/>
+                <property name="password" value="123456"/>
+            </dataSource>
+        </environment>
+
+    </environments>
+
+    <mappers>
+        <mapper resource="com/lee/dao/UserMapper.xml"/>
+
+        <!-- 下述两种方式 接口和 Mapper配置文件必须同名！且在同一个包下！-->
+        <!--<mapper class="com.lee.dao.UserMapper"/>
+        <package name="com.lee.dao"/>-->
+    </mappers>
+
+</configuration>

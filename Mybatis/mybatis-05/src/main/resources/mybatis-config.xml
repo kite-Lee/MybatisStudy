@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!--  引入外部配置文件  -->
+    <properties resource="db.properties"/>
+
+    <settings>
+        <setting name="logImpl" value="LOG4J"/>
+    </settings>
+
+
+    <typeAliases>
+        <typeAlias type="com.lee.pojo.User" alias="User"/>
+    </typeAliases>
+    <environments default="test">
+
+        <environment id="test">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+
+        <environment id="development">
+            <transactionManager type="JDBC"/>   <!--事务管理器 有两种 type="MANAGED"-->
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/mybatis?useSSL=true&amp;useUnicode=true&amp;serverTimezone=Asia/Shanghai&amp;characterEncoding=utf8"/>
+                <property name="username" value="root"/>
+                <property name="password" value="123456"/>
+            </dataSource>
+        </environment>
+
+    </environments>
+
+    <mappers>
+        <mapper class="com.lee.dao.UserMapper"/>
+
+        <!--  使用UserMapper.xml的时候 -->
+        <!--  <mapper resource="com/lee/dao/UserMapper.xml"/>  -->
+    </mappers>
+
+</configuration>

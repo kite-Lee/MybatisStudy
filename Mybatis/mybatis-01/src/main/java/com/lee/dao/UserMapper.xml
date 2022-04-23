@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace 绑定一个对应的 Dao / Mapper 接口-->
+<mapper namespace="com.lee.dao.UserMapper">
+
+
+    <!--  select 查询语句  -->
+    <select id="getUserList" resultType="com.lee.pojo.User">
+        select * from mybatis.user;
+    </select>
+
+    <!--  select 查询语句  -->
+    <select id="getUserById" parameterType="int"  resultType="com.lee.pojo.User">
+        select * from mybatis.user where id = #{id};
+    </select>
+
+    <!--  插入一个新用户  -->
+    <insert id="addUser" parameterType="com.lee.pojo.User" >
+        insert into mybatis.user (id, name, pwd) values (#{id}, #{name}, #{pwd});
+    </insert>
+
+    <!--  修改用户  -->
+    <update id="updateUser" parameterType="com.lee.pojo.User">
+        update mybatis.user set pwd = #{pwd}, name = #{name} where id = #{id};
+    </update>
+
+    <!--  删除用户  -->
+    <delete id="deleteUser" parameterType="int">
+        delete from mybatis.user where id = #{id};
+    </delete>
+
+    <!--  update 使用 map  -->
+    <update id="updateUserByMap" parameterType="map">
+        update mybatis.user set name = #{username}, pwd = #{password} where id = 3;
+    </update>
+
+    <!--  insert 使用 map  -->
+    <insert id="addUserByMap" parameterType="map">
+        insert into mybatis.user (id, pwd) values (#{userid}, #{password});
+    </insert>
+
+    <!--  select 使用 map  -->
+    <select id="getUserByMapId" parameterType="map"  resultType="com.lee.pojo.User">
+        select * from mybatis.user where id = #{userid} and name = #{username};
+    </select>
+
+    <!--  模糊查询  -->
+    <select id="getUserLike" resultType="com.lee.pojo.User">
+#         select * from mybatis.user where name like "%"#{value}"%";    // 可以，但一般不使用，可能会被 SQL 注入
+        select * from mybatis.user where name like #{value};
+    </select>
+
+
+</mapper>
