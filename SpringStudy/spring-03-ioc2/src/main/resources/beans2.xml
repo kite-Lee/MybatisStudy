@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--    &lt;!&ndash; IoC 默认使用无参构造 &ndash;&gt;-->
+<!--    <bean id="user" class="com.lee.pojo.User">-->
+<!--        <property name="name" value="Kite"/>-->
+<!--    </bean>-->
+    <!-- 有参构造 下标赋值 -->
+    <bean id="userIndex" class="com.lee.pojo.User">
+        <constructor-arg index="0" value="KiteIndex"/>
+    </bean>
+
+    <!-- 有参构造 参数类型赋值（多个相同类型会出错，不建议使用） -->
+    <bean id="userType" class="com.lee.pojo.User">
+        <constructor-arg type="java.lang.String" value="KiteType"/>
+    </bean>
+
+    <!-- 有参构造 参数名赋值 -->
+    <bean id="userName" class="com.lee.pojo.User" >
+        <constructor-arg name="name" value="KiteName"/>
+    </bean>
+    <!-- 别名 -->
+    <alias name="userIndex" alias="index"/>
+    <bean id="test" class="com.lee.pojo.User" name="userName2,u3;u4 u5"/>
+
+</beans>
