@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="address" class="com.lee.pojo.Address">
+        <property name="address" value="大连"/>
+    </bean>
+    <bean id="student" class="com.lee.pojo.Student">
+        <!--  普通值注入  -->
+        <property name="name" value="Kite"/>
+        <!--  bean 注入 : ref  -->
+        <property name="address" ref="address"/>
+        <!--  数组注入  -->
+        <property name="books">
+            <array>
+                <value>Spring</value>
+                <value>深入理解JVM</value>
+                <value>计算机网络自顶向下</value>
+                <value>mysql必知必会</value>
+            </array>
+        </property>
+        <!--  List 注入  -->
+        <property name="hobbies">
+            <list>
+                <value>Spring</value>
+                <value>SpringMVC</value>
+                <value>SpringBoot</value>
+                <value>SpringCloud</value>
+            </list>
+        </property>
+        <!--  Map 注入  -->
+        <property name="card">
+            <map>
+                <entry key="身份证" value="12345678900000"/>
+                <entry key="银行卡" value="6255045678900000"/>
+            </map>
+        </property>
+
+        <!--  Set 注入  -->
+        <property name="games">
+            <set>
+                <value>LPL</value>
+                <value>KPL</value>
+            </set>
+        </property>
+
+        <!--  null 值注入  -->
+        <property name="wife">
+            <null/>
+        </property>
+
+        <!--  Properties 注入  -->
+        <property name="info">
+            <props>
+                <prop key="学号">112022</prop>
+                <prop key="性别">男</prop>
+                <prop key="password">20220425</prop>
+            </props>
+        </property>
+
+    </bean>
+</beans>
