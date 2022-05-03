@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script type="text/javascript">
+        // 编写 JavaScript 对象 ES6
+
+        var user = {
+            name: "Kite",
+            age: 15,
+            sex: '男'
+        };
+
+        var user_json = JSON.stringify(user);
+        console.log(user_json);   //      {"name":"Kite","age":15,"sex":"男"}
+
+        var user_js = JSON.parse(user_json)
+        console.log(user_js);     //     {name: 'Kite', age: 15, sex: '男'}
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
