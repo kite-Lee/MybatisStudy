@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<!-- 核心配置文件 -->
+<configuration>
+    <!--  配置数据源，交给 Spring 去做  -->
+
+    <!--  日志功能  -->
+    <settings>
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>
+
+    <typeAliases>
+        <package name="com.lee.pojo"/>
+    </typeAliases>
+
+
+    <!--  可以被 spring-dao 中的配置所取代  -->
+
+<!--    <mappers>-->
+<!--        <mapper class="com.lee.dao.BookMapper"/>-->
+<!--    </mappers>-->
+
+
+</configuration>
